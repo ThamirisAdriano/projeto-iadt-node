@@ -1,12 +1,16 @@
-// index.js
-
 const express = require('express');
 const app = express();
-const notesRoutes = require('./notes');
-const authRouter = require('./auth');
 
 app.use(express.json());
-app.use('/api', notesRoutes);
-app.use(authRouter);
+
+const todos = [
+    { id: 1, task: 'Comprar leite' },
+    { id: 2, task: 'Lavar o carro' }
+];
+
+// Rota para obter a lista de tarefas
+app.get('/todos', (req, res) => {
+    res.status(200).json(todos);
+});
 
 module.exports = app;
